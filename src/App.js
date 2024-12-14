@@ -470,20 +470,26 @@ export default function App() {
   </div>
 </nav>
 
-      <div className="fixed top-4 right-4 z-40">
-        <button 
-          onClick={playClick}
-          className="group relative px-8 py-3 bg-black text-yellow-500 font-bold border border-yellow-500 hover:bg-yellow-500 hover:text-black transition-all duration-300"
-          style={{
-            clipPath: 'polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%)'
-          }}
-        >
-          <div className="relative flex items-center gap-2 group-hover:scale-105 transition-transform duration-300">
-            Buy $SAM
-            <ExternalLink className="w-4 h-4 transform group-hover:rotate-45 transition-transform duration-300" />
-          </div>
-        </button>
-      </div>
+<div className="fixed top-4 right-4 z-40">
+  <a
+    href="https://pump.fun"
+    target="_blank"
+    rel="noopener noreferrer"
+    onClick={playClick} // Play the click sound
+    className="group relative inline-block px-8 py-3 bg-black text-yellow-500 font-bold border border-yellow-500 hover:bg-yellow-500 hover:text-black transition-all duration-300 text-center"
+    style={{
+      clipPath: 'polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%)',
+      textDecoration: 'none', // Ensure no underline
+    }}
+  >
+    <div className="relative flex items-center gap-2 group-hover:scale-105 transition-transform duration-300">
+      Buy $SAM
+      <ExternalLink className="w-4 h-4 transform group-hover:rotate-45 transition-transform duration-300" />
+    </div>
+  </a>
+</div>
+
+
 
       <TokenInfo onButtonClick={playClick} />
       <CyberTerminal onButtonClick={playClick} />

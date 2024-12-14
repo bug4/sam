@@ -20,7 +20,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
         title: "Tokenomics",
         content: [
           "Total Supply: 1,000,000,000 $SAM",
-          "Tax: Buy 5% / Sell 5%",
+          "Tax: Buy 0% / Sell 0%",
           "Marketing: 3%",
           "Development: 2%",
         ]
