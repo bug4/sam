@@ -443,16 +443,27 @@ export default function App() {
   </div>
 )}
 
-      <div className="fixed top-10 left-10 z-40">
-        <h1 className="text-6xl font-black tracking-tight">
-          <span 
-            className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400"
-            style={{ WebkitTextStroke: '1px #000' }}
-          >
-            SAM
-          </span>
-        </h1>
-      </div>
+<div className="fixed top-10 left-10 z-40">
+  <h1 className="font-black tracking-tight relative">
+    {/* Main text with glow effect */}
+    <span 
+      className="text-6xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 relative"
+      style={{ 
+        WebkitTextStroke: '2px rgba(234,179,8,0.3)',
+        filter: 'drop-shadow(0 0 10px rgba(234,179,8,0.3))'
+      }}
+    >
+      SAM
+    </span>
+    
+    {/* Optional decorative elements */}
+    <span className="absolute -left-2 -top-2 text-6xl opacity-20 text-yellow-500 blur-sm">SAM</span>
+    <span className="absolute -right-2 -bottom-2 text-6xl opacity-20 text-yellow-500 blur-sm">SAM</span>
+    
+    {/* Optional cyberpunk accent line */}
+    <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
+  </h1>
+</div>
 
       <nav className="fixed top-0 w-full z-40 flex justify-center items-center p-4">
   <div className="flex gap-6">
