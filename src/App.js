@@ -8,7 +8,7 @@ import DocsTerminal from './components/DocsTerminal';  // Make sure the path mat
 
 // Initialize OpenAI
 const openai = new OpenAI({
-  apiKey: 'your-api-key-here',
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true
 });
 
