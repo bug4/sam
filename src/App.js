@@ -15,20 +15,19 @@ const openai = new OpenAI({
 const TokenInfo = ({ onButtonClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [holderCount, setHolderCount] = useState('...');
   const [retryCount, setRetryCount] = useState(0);
-  const [isLaunched, setIsLaunched] = useState(false); // false/true
+  const isLaunched = true; // Change to true when launching
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
 
-  const TOKEN_ADDRESS = isLaunched ? "ca aici" : null;
+  const TOKEN_ADDRESS = isLaunched ? "..." : null;
   const HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=c6707fb2-9d2b-49d4-9421-fdcd4a01a5c7";
 
   const handleCopy = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
       setShowCopyTooltip(true);
-      onButtonClick(); // Play click sound
+      onButtonClick();
       setTimeout(() => setShowCopyTooltip(false), 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
@@ -37,10 +36,9 @@ const TokenInfo = ({ onButtonClick }) => {
 
   useEffect(() => {
     const fetchHolderCount = async () => {
-      if (!TOKEN_ADDRESS) return; // Don't fetch if no address
+      if (!TOKEN_ADDRESS) return;
 
       setIsLoading(true);
-      setError(null);
       
       try {
         const connection = new Connection(HELIUS_RPC, 'confirmed');
@@ -75,17 +73,11 @@ const TokenInfo = ({ onButtonClick }) => {
             setRetryCount(prev => prev + 1);
             setTimeout(fetchHolderCount, 2000);
             return;
-          } else {
-            throw new Error('Failed to fetch holder count after multiple attempts');
           }
         }
 
       } catch (error) {
-        // Only show error if we're launched
-        if (TOKEN_ADDRESS) {
-          console.error('Error fetching holder count:', error);
-          setError('Failed to fetch holder count. Please try again later.');
-        }
+        console.error('Error fetching holder count:', error);
       } finally {
         setIsLoading(false);
       }
@@ -133,30 +125,31 @@ const TokenInfo = ({ onButtonClick }) => {
           <div className="h-[600px] p-4 font-mono text-sm">
             <div className="space-y-4">
               {/* Live Metrics */}
-<div className="border border-yellow-500/30 p-4 bg-yellow-500/5">
-  <h3 className="text-yellow-500 mb-4 text-lg">Live Metrics</h3>
-  <div className="space-y-3">
-    {/* New Status Row */}
-    <div className="flex justify-between">
-      <span className="text-yellow-500/80">Status:</span>
-      <span className="text-yellow-400">Deployed</span>
-    </div>
-    <div className="flex justify-between">
-      <span className="text-yellow-500/80">Holders:</span>
-      <span className="text-yellow-400">
-        {isLoading ? (
-          <span className="animate-pulse">Loading...</span>
-        ) : (
-          holderCount.toLocaleString()
-        )}
-      </span>
-    </div>
-    <div className="flex justify-between">
-      <span className="text-yellow-500/80">Supply:</span>
-      <span className="text-yellow-400">1,000,000,000</span>
-    </div>
-  </div>
-</div>
+              <div className="border border-yellow-500/30 p-4 bg-yellow-500/5">
+                <h3 className="text-yellow-500 mb-4 text-lg">Live Metrics</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-yellow-500/80">Status:</span>
+                    <span className="text-yellow-400">
+                      {isLaunched ? "Deployed" : "Pre-Launch"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-yellow-500/80">Holders:</span>
+                    <span className="text-yellow-400">
+                      {isLoading ? (
+                        <span className="animate-pulse">Loading...</span>
+                      ) : (
+                        holderCount.toLocaleString()
+                      )}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-yellow-500/80">Supply:</span>
+                    <span className="text-yellow-400">1,000,000,000</span>
+                  </div>
+                </div>
+              </div>
 
               {/* Contract Details */}
               <div className="border border-yellow-500/30 p-4 bg-yellow-500/5">
