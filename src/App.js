@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
-import { Twitter, MessageCircle, FileText, ExternalLink, Terminal, Send, X, ChevronDown, Volume2, VolumeX } from 'lucide-react';
+import { Twitter, MessageCircle, FileText, ExternalLink, Terminal, Send, X, ChevronDown, Bot, Volume2, VolumeX } from 'lucide-react';
+import AgentCreator from './components/AgentCreator';  // Make sure AgentCreator.js is in the components folder
 import OpenAI from 'openai';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
@@ -366,6 +367,7 @@ export default function App() {
   const clickSound = useRef(new Audio('/click.mp3'));
   const backgroundMusic = useRef(new Audio('/music.mp3'));
   const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+  const [isAgentCreatorOpen, setIsAgentCreatorOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -455,7 +457,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-40 flex justify-center items-center p-4">
   <div className="flex gap-6">
   <a
-      href="https://x.com/"
+      href="https://x.com/SAMTerminalAI"
       onClick={playClick}
       target="_blank"
       rel="noopener noreferrer"
@@ -506,6 +508,24 @@ export default function App() {
         <span>Docs</span>
       </div>
     </a>
+    <a
+    href="#!"
+  onClick={(e) => {
+    e.preventDefault();
+    playClick();
+    setIsAgentCreatorOpen(true);
+  }}
+  className="group relative px-8 py-3 bg-black text-yellow-500 font-bold min-w-[140px] text-center border border-yellow-500"
+  style={{
+    clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)'
+  }}
+>
+  <div className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+  <div className="relative flex items-center justify-center gap-2 group-hover:scale-105 transition-transform duration-300">
+    <Bot className="w-5 h-5" />
+    <span>Create Agent</span>
+  </div>
+</a>
   </div>
 </nav>
 
@@ -553,6 +573,11 @@ export default function App() {
     <VolumeX className="w-6 h-6 text-yellow-500" />
   )}
 </button>
+<AgentCreator 
+  onButtonClick={playClick}
+  isOpen={isAgentCreatorOpen}
+  setIsOpen={setIsAgentCreatorOpen}
+/>
 
     </div>
   );
