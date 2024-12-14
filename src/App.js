@@ -1,0 +1,500 @@
+import React, { useState, useRef, useEffect } from 'react';
+import Spline from '@splinetool/react-spline';
+import { Twitter, MessageCircle, FileText, ExternalLink, Terminal, Send, X, ChevronDown } from 'lucide-react';
+import OpenAI from 'openai';
+import { Connection, PublicKey } from '@solana/web3.js';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import DocsTerminal from './components/DocsTerminal';  // Make sure the path matches your file structure
+
+// Initialize OpenAI
+const openai = new OpenAI({
+  apiKey: 'your-api-key-here',
+  dangerouslyAllowBrowser: true
+});
+
+const TokenInfo = ({ onButtonClick }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [holderCount, setHolderCount] = useState('...');
+  const [retryCount, setRetryCount] = useState(0);
+
+  const TOKEN_ADDRESS = "7xuLqcbeRanciEL65a5zBgXhn147JyW1WyCA7mYUpump";
+  const HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=c6707fb2-9d2b-49d4-9421-fdcd4a01a5c7";
+
+  useEffect(() => {
+    const fetchHolderCount = async () => {
+      setIsLoading(true);
+      setError(null);
+      
+      try {
+        const connection = new Connection(HELIUS_RPC, 'confirmed');
+        const tokenMint = new PublicKey(TOKEN_ADDRESS);
+
+        let tokenAccounts;
+        try {
+          tokenAccounts = await connection.getProgramAccounts(
+            TOKEN_PROGRAM_ID,
+            {
+              filters: [
+                {
+                  dataSize: 165,
+                },
+                {
+                  memcmp: {
+                    offset: 0,
+                    bytes: tokenMint.toBase58(),
+                  },
+                },
+              ],
+            }
+          );
+          
+          setRetryCount(0);
+          setHolderCount(tokenAccounts.length);
+
+        } catch (error) {
+          console.error('Initial fetch failed:', error);
+          
+          if (retryCount < 3) {
+            setRetryCount(prev => prev + 1);
+            setTimeout(fetchHolderCount, 2000);
+            return;
+          } else {
+            throw new Error('Failed to fetch holder count after multiple attempts');
+          }
+        }
+
+      } catch (error) {
+        console.error('Error fetching holder count:', error);
+        setError('Failed to fetch holder count. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (isOpen) {
+      fetchHolderCount();
+      const interval = setInterval(fetchHolderCount, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [isOpen, retryCount]);
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          onButtonClick();
+          setIsOpen(!isOpen);
+        }}
+        className="fixed right-6 top-1/2 -translate-y-1/2 z-40 p-3 bg-black border border-yellow-500 group hover:bg-yellow-500/10"
+        style={{
+          clipPath: 'polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%)'
+        }}
+      >
+        <ChevronDown className={`w-6 h-6 text-yellow-500 transform ${isOpen ? 'rotate-180' : ''} transition-transform`} />
+      </button>
+
+      <div className={`fixed right-6 top-1/2 -translate-y-1/2 z-40 w-[400px] transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="bg-black border border-yellow-500 shadow-lg shadow-yellow-500/20">
+          <div className="flex items-center justify-between p-2 border-b border-yellow-500/50 bg-yellow-500/10">
+            <div className="flex items-center gap-2">
+              <span className="text-yellow-500 font-mono text-sm">$SAM Token Info</span>
+            </div>
+            <button 
+              onClick={() => {
+                onButtonClick();
+                setIsOpen(false);
+              }}
+              className="text-yellow-500 hover:text-yellow-400"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="h-[600px] p-4 font-mono text-sm">
+            {error ? (
+              <div className="text-red-500 p-4 border border-red-500/30 bg-red-500/5">
+                {error}
+                <button 
+                  onClick={() => {
+                    onButtonClick();
+                    setRetryCount(0);
+                  }}
+                  className="mt-2 text-yellow-500 hover:text-yellow-400 text-sm underline"
+                >
+                  Retry
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="border border-yellow-500/30 p-4 bg-yellow-500/5">
+                  <h3 className="text-yellow-500 mb-4 text-lg">Live Metrics</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span className="text-yellow-500/80">Holders:</span>
+                      <span className="text-yellow-400">
+                        {isLoading ? (
+                          <span className="animate-pulse">Loading...</span>
+                        ) : (
+                          holderCount.toLocaleString()
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-yellow-500/80">Supply:</span>
+                      <span className="text-yellow-400">1,000,000,000</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border border-yellow-500/30 p-4 bg-yellow-500/5">
+                  <h3 className="text-yellow-500 mb-4 text-lg">Contract Details</h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-yellow-500/80">Address:</span>
+                      <span className="text-yellow-400 text-xs">{TOKEN_ADDRESS.slice(0, 6)}...{TOKEN_ADDRESS.slice(-4)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-yellow-500/80">Network:</span>
+                      <span className="text-yellow-400">Solana</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border border-yellow-500/30 p-4 bg-yellow-500/5">
+                  <h3 className="text-yellow-500 mb-4 text-lg">About $SAM</h3>
+                  <p className="text-yellow-500/80 text-sm leading-relaxed">
+                    $SAM is a cyber-samurai powered token built on Solana. 
+                    Our mission is to bring cyberpunk culture to the blockchain 
+                    through innovative tokenomics and community-driven governance.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const CyberTerminal = ({ onButtonClick }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { type: 'system', content: 'SAM AI Terminal v1.0.1 initialized...' },
+    { type: 'system', content: 'Establishing secure connection...' },
+    { type: 'system', content: 'Connection established. Ready for interaction.' }
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+
+    onButtonClick();
+    const userMessage = input;
+    setInput('');
+    setIsLoading(true);
+
+    setMessages(prev => [...prev, { type: 'user', content: userMessage }]);
+
+    try {
+      const chatMessages = messages
+        .filter(msg => msg.type === 'user' || msg.type === 'assistant')
+        .map(msg => ({
+          role: msg.type === 'user' ? 'user' : 'assistant',
+          content: msg.content
+        }));
+
+      chatMessages.push({ role: 'user', content: userMessage });
+
+      chatMessages.unshift({
+        role: 'system',
+        content: 'You are SAM, a cyber-samurai AI assistant. Respond in a cyberpunk style, using technical language and references to cyber-samurai culture. Keep responses concise and impactful.'
+      });
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4",
+        messages: chatMessages,
+        temperature: 0.7,
+        max_tokens: 150
+      });
+
+      if (completion.choices[0]?.message?.content) {
+        setMessages(prev => [...prev, { 
+          type: 'assistant', 
+          content: completion.choices[0].message.content
+        }]);
+      }
+
+    } catch (error) {
+      console.error('OpenAI API Error:', error);
+      setMessages(prev => [...prev, { 
+        type: 'system', 
+        content: 'Error: Neural connection failed. Please try again.' 
+      }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          onButtonClick();
+          setIsOpen(!isOpen);
+        }}
+        className="fixed left-6 top-1/2 -translate-y-1/2 z-40 p-3 bg-black border border-yellow-500 group hover:bg-yellow-500/10"
+        style={{
+          clipPath: 'polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%)'
+        }}
+      >
+        <Terminal className="w-6 h-6 text-yellow-500" />
+      </button>
+
+      <div className={`fixed left-6 top-1/2 -translate-y-1/2 z-40 w-96 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="bg-black border border-yellow-500 shadow-lg shadow-yellow-500/20">
+          <div className="flex items-center justify-between p-2 border-b border-yellow-500/50 bg-yellow-500/10">
+            <div className="flex items-center gap-2">
+              <Terminal className="w-4 h-4 text-yellow-500" />
+              <span className="text-yellow-500 font-mono text-sm">SAM AI Terminal</span>
+            </div>
+            <button 
+              onClick={() => {
+                onButtonClick();
+                setIsOpen(false);
+              }}
+              className="text-yellow-500 hover:text-yellow-400"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="h-[600px] overflow-y-auto p-4 font-mono text-sm">
+            {messages.map((msg, idx) => (
+              <div 
+                key={idx} 
+                className={`mb-2 ${
+                  msg.type === 'user' 
+                    ? 'text-yellow-400' 
+                    : msg.type === 'assistant'
+                      ? 'text-green-400'
+                      : 'text-yellow-500/80'
+                }`}
+              >
+                <span className="mr-2">
+                  {msg.type === 'user' ? '>' : msg.type === 'assistant' ? '#' : '$'}
+                </span>
+                {msg.content}
+              </div>
+            ))}
+            {isLoading && (
+              <div className="text-yellow-500/80">
+                <span className="mr-2">$</span>
+                Processing neural response...
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          <form onSubmit={handleSubmit} className="border-t border-yellow-500/50">
+            <div className="flex items-center p-2 bg-yellow-500/10">
+              <span className="text-yellow-500 mr-2">></span>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="flex-1 bg-transparent border-none outline-none text-yellow-400 font-mono"
+                placeholder={isLoading ? "Processing..." : "Type your message..."}
+                disabled={isLoading}
+              />
+              <button 
+                type="submit"
+                onClick={onButtonClick}
+                className={`text-yellow-500 hover:text-yellow-400 p-1 ${isLoading ? 'opacity-50' : ''}`}
+                disabled={isLoading}
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default function App() {
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [showEnter, setShowEnter] = useState(false);
+  const [isDocsOpen, setIsDocsOpen] = useState(false);
+  const clickSound = useRef(new Audio('/click.mp3'));
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowEnter(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const playClick = () => {
+    clickSound.current.currentTime = 0;
+    clickSound.current.play().catch(err => console.log('Audio play failed:', err));
+  };
+
+  const handleEnter = () => {
+    playClick();
+    setInitialLoading(false);
+  };
+
+  return (
+    <div>
+      {initialLoading && (
+  <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black p-8">
+    <div className="w-full max-w-2xl font-mono">
+      {/* Terminal Window Style */}
+      <div className="border border-yellow-500 bg-black p-4 rounded">
+        {/* Terminal Header */}
+        <div className="text-yellow-500 mb-4 flex justify-between">
+          <span>SAM.exe</span>
+          <span>[System Initialization]</span>
+        </div>
+        
+        {/* Content */}
+        <div className="space-y-2">
+          <div className="text-yellow-500">
+            > Initializing SAM protocol...
+          </div>
+          <div className="text-yellow-500">
+            > Loading neural networks...
+          </div>
+          <div className="text-yellow-500">
+            > Establishing blockchain connection...
+          </div>
+          <div className="text-yellow-500 animate-pulse">
+            > System ready for activation
+          </div>
+          
+          {/* Enter Button */}
+          {showEnter && (
+            <button
+              onClick={handleEnter}
+              className="mt-8 w-full px-8 py-3 bg-black border-2 border-yellow-500 text-yellow-500 font-mono hover:bg-yellow-500 hover:text-black transition-all duration-300"
+            >
+              [ENTER SYSTEM]
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+      <div className="fixed top-10 left-10 z-40">
+        <h1 className="text-6xl font-black tracking-tight">
+          <span 
+            className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400"
+            style={{ WebkitTextStroke: '1px #000' }}
+          >
+            SAM
+          </span>
+        </h1>
+      </div>
+
+      <nav className="fixed top-0 w-full z-40 flex justify-center items-center p-4">
+  <div className="flex gap-6">
+  <a
+      href="#twitter"
+      onClick={playClick}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative px-8 py-3 bg-black text-yellow-500 font-bold min-w-[140px] text-center border border-yellow-500"
+      style={{
+        clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)'
+      }}
+    >
+      <div className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+      <div className="relative flex items-center justify-center gap-2 group-hover:scale-105 transition-transform duration-300">
+        <Twitter className="w-5 h-5" />
+        <span>Twitter</span>
+      </div>
+    </a>
+
+    <a
+      href="#telegram"
+      onClick={playClick}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative px-8 py-3 bg-black text-yellow-500 font-bold min-w-[140px] text-center border border-yellow-500"
+      style={{
+        clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)'
+      }}
+    >
+      <div className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+      <div className="relative flex items-center justify-center gap-2 group-hover:scale-105 transition-transform duration-300">
+        <MessageCircle className="w-5 h-5" />
+        <span>Telegram</span>
+      </div>
+    </a>
+
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        playClick();
+        setIsDocsOpen(true);
+      }}
+      className="group relative px-8 py-3 bg-black text-yellow-500 font-bold min-w-[140px] text-center border border-yellow-500"
+      style={{
+        clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)'
+      }}
+    >
+      <div className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+      <div className="relative flex items-center justify-center gap-2 group-hover:scale-105 transition-transform duration-300">
+        <FileText className="w-5 h-5" />
+        <span>Docs</span>
+      </div>
+    </a>
+  </div>
+</nav>
+
+      <div className="fixed top-4 right-4 z-40">
+        <button 
+          onClick={playClick}
+          className="group relative px-8 py-3 bg-black text-yellow-500 font-bold border border-yellow-500 hover:bg-yellow-500 hover:text-black transition-all duration-300"
+          style={{
+            clipPath: 'polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%)'
+          }}
+        >
+          <div className="relative flex items-center gap-2 group-hover:scale-105 transition-transform duration-300">
+            Buy $SAM
+            <ExternalLink className="w-4 h-4 transform group-hover:rotate-45 transition-transform duration-300" />
+          </div>
+        </button>
+      </div>
+
+      <TokenInfo onButtonClick={playClick} />
+      <CyberTerminal onButtonClick={playClick} />
+      <DocsTerminal 
+        onButtonClick={playClick}
+        isOpen={isDocsOpen}
+        setIsOpen={setIsDocsOpen}
+      />
+      <div style={{ width: '100vw', height: '100vh' }}>
+        <Spline scene="https://prod.spline.design/fUPzHI1FdmxN6-hh/scene.splinecode" />
+      </div>
+    </div>
+  );
+}
