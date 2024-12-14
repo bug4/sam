@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
-import { Twitter, MessageCircle, FileText, ExternalLink, Terminal, Send, X, ChevronDown } from 'lucide-react';
+import { Twitter, MessageCircle, FileText, ExternalLink, Terminal, Send, X, ChevronDown, Volume2, VolumeX } from 'lucide-react';
 import OpenAI from 'openai';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
@@ -364,6 +364,8 @@ export default function App() {
   const [showEnter, setShowEnter] = useState(false);
   const [isDocsOpen, setIsDocsOpen] = useState(false);
   const clickSound = useRef(new Audio('/click.mp3'));
+  const backgroundMusic = useRef(new Audio('/music.mp3'));
+  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -380,6 +382,20 @@ export default function App() {
   const handleEnter = () => {
     playClick();
     setInitialLoading(false);
+    // Play background music
+    backgroundMusic.current.volume = 0.5; // Set volume to 50%
+    backgroundMusic.current.loop = true; // Make it loop
+    backgroundMusic.current.play().catch(err => console.log('Audio play failed:', err));
+  };
+
+  const toggleMusic = () => {
+    playClick();
+    if (isMusicPlaying) {
+      backgroundMusic.current.pause();
+    } else {
+      backgroundMusic.current.play().catch(err => console.log('Audio play failed:', err));
+    }
+    setIsMusicPlaying(!isMusicPlaying);
   };
 
   return (
@@ -524,6 +540,20 @@ export default function App() {
       <div style={{ width: '100vw', height: '100vh' }}>
         <Spline scene="https://prod.spline.design/fUPzHI1FdmxN6-hh/scene.splinecode" />
       </div>
+      <button
+  onClick={toggleMusic}
+  className="fixed bottom-6 right-6 z-40 p-3 bg-black border border-yellow-500 group hover:bg-yellow-500/10"
+  style={{
+    clipPath: 'polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%)'
+  }}
+>
+  {isMusicPlaying ? (
+    <Volume2 className="w-6 h-6 text-yellow-500" />
+  ) : (
+    <VolumeX className="w-6 h-6 text-yellow-500" />
+  )}
+</button>
+
     </div>
   );
 }
