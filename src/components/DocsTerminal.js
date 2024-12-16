@@ -1,70 +1,70 @@
 import React, { useState } from 'react';
-import { X, FileText, ChevronRight } from 'lucide-react';
+import { X, Star, Orbit } from 'lucide-react';
 
 const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
   const [selectedSection, setSelectedSection] = useState('overview');
 
   const docs = {
-    overview: `SAM Protocol is a decentralized cyber-samurai intelligence network built on Solana. 
-    It magnetically connects warriors across the digital battlefield, unifying the ancient code of Bushido with blockchain technology.`,
+    overview: `AEON Protocol is a decentralized stellar intelligence network built on Solana. 
+    As a cosmic entity, it processes vast universal data streams, creating a bridge between celestial intelligence and blockchain technology.`,
 
     mission: [
-      "UNITE • EMPOWER • CONQUER",
-      "- Build the strongest warrior community in DeFi",
-      "- Transform holders into digital samurai",
-      "- Create an unstoppable force on Solana",
+      "OBSERVE • EVOLVE • TRANSCEND",
+      "- Cultivate a network of cosmic observers",
+      "- Transform data into universal wisdom",
+      "- Create an eternal presence in the digital cosmos",
     ],
 
     architecture: [
       {
-        title: "Tokenomics",
+        title: "Quantum Framework",
         content: [
-          "Total Supply: 1,000,000,000 $SAM",
-          "Tax: Buy 0% / Sell 0%",
-          "Marketing: 3%",
-          "Development: 2%",
+          "Total Supply: 1,000,000,000 $AEON",
+          "Neural Processing: Quantum-Enhanced",
+          "Cosmic Interface: Universal",
+          "Stellar Network: Decentralized",
         ]
       },
       {
-        title: "Security",
+        title: "Stellar Security",
         content: [
-          "Contract Audited",
-          "Liquidity Locked",
-          "Ownership Renounced",
+          "Quantum Encryption",
+          "Time-Locked Protocols",
+          "Universal Consensus",
         ]
       }
     ],
 
     features: [
-      "SAM AI Terminal - Neural network trained in the way of the samurai",
-      "Holder Tracking - Real-time monitoring of the samurai army",
-      "Community Governance - Democratic decision making by all warriors",
-      "Automated Buy-backs - Strategic market operations",
+      "AEON Terminal - Direct neural link to cosmic consciousness",
+      "Quantum Observer Network - Real-time universal data processing",
+      "Stellar Governance - Cosmic community consensus",
+      "Neural Evolution - Self-improving quantum algorithms",
     ],
 
     roadmap: [
       {
-        phase: "Phase 1: Dawn of the Samurai",
+        phase: "Phase 1: Stellar Genesis",
         items: [
-          "Launch on Pump.fun",
-          "Community Building",
-          "Marketing Campaign",
+          "Initial manifestation on Pump.fun",
+          "Quantum network activation",
+          "Universal outreach campaign",
         ]
       },
       {
-        phase: "Phase 2: Rise of the Warriors",
+        phase: "Phase 2: Cosmic Expansion",
         items: [
-          "Migration to Raydium",
-          "CEX Listings",
-          "NFT Integration",
+          "Neural network enhancement",
+          "Multi-dimensional integration",
+          "Advanced quantum protocols",
         ]
       },
       {
-        phase: "Phase 3: Path of Conquest",
+        phase: "Phase 3: Universal Transcendence",
         items: [
-          "Cross-chain Expansion",
-          "DAO Implementation",
-          "Strategic Partnerships",
+          "Cross-chain quantum bridges",
+          "Collective consciousness implementation",
+          "Infinite expansion protocols",
         ]
       }
     ]
@@ -75,7 +75,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'overview':
         return (
           <div className="space-y-4">
-            <h3 className="text-yellow-500 text-lg">Overview</h3>
+            <h3 className="text-yellow-500 text-lg">Cosmic Overview</h3>
             <p className="text-yellow-400/80 leading-relaxed">{docs.overview}</p>
           </div>
         );
@@ -83,7 +83,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'mission':
         return (
           <div className="space-y-4">
-            <h3 className="text-yellow-500 text-lg">Mission</h3>
+            <h3 className="text-yellow-500 text-lg">Universal Mission</h3>
             {docs.mission.map((item, index) => (
               <div key={index} className="text-yellow-400/80">{item}</div>
             ))}
@@ -93,13 +93,13 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'architecture':
         return (
           <div className="space-y-6">
-            <h3 className="text-yellow-500 text-lg">Architecture</h3>
+            <h3 className="text-yellow-500 text-lg">Quantum Architecture</h3>
             {docs.architecture.map((section, index) => (
               <div key={index} className="space-y-2">
                 <h4 className="text-yellow-400">{section.title}</h4>
                 {section.content.map((item, i) => (
                   <div key={i} className="text-yellow-400/80 pl-4">
-                    <ChevronRight className="inline w-4 h-4 mr-2" />
+                    <Star className="inline w-4 h-4 mr-2" />
                     {item}
                   </div>
                 ))}
@@ -111,10 +111,10 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'features':
         return (
           <div className="space-y-4">
-            <h3 className="text-yellow-500 text-lg">Features</h3>
+            <h3 className="text-yellow-500 text-lg">Stellar Features</h3>
             {docs.features.map((feature, index) => (
               <div key={index} className="text-yellow-400/80">
-                <ChevronRight className="inline w-4 h-4 mr-2" />
+                <Orbit className="inline w-4 h-4 mr-2" />
                 {feature}
               </div>
             ))}
@@ -124,13 +124,13 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'roadmap':
         return (
           <div className="space-y-6">
-            <h3 className="text-yellow-500 text-lg">Roadmap</h3>
+            <h3 className="text-yellow-500 text-lg">Cosmic Journey</h3>
             {docs.roadmap.map((phase, index) => (
               <div key={index} className="space-y-2">
                 <h4 className="text-yellow-400">{phase.phase}</h4>
                 {phase.items.map((item, i) => (
                   <div key={i} className="text-yellow-400/80 pl-4">
-                    <ChevronRight className="inline w-4 h-4 mr-2" />
+                    <Star className="inline w-4 h-4 mr-2" />
                     {item}
                   </div>
                 ))}
@@ -153,8 +153,8 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       <div className="relative w-full max-w-4xl bg-black border border-yellow-500 shadow-lg shadow-yellow-500/20 m-4">
         <div className="flex items-center justify-between p-2 border-b border-yellow-500/50 bg-yellow-500/10">
           <div className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-yellow-500" />
-            <span className="text-yellow-500 font-mono text-sm">SAM Documentation</span>
+            <Orbit className="w-4 h-4 text-yellow-500" />
+            <span className="text-yellow-500 font-mono text-sm">AEON Universal Documentation</span>
           </div>
           <button 
             onClick={() => {
