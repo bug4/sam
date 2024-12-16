@@ -21,7 +21,7 @@ const TokenInfo = ({ onButtonClick }) => {
   const isLaunched = true; // Change to true when launching
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
 
-  const TOKEN_ADDRESS = isLaunched ? "As9FQAwWRkizzzwQ6EM4xUqLJpLszaxGVCPU4SAspump" : null;
+  const TOKEN_ADDRESS = isLaunched ? "..." : null;
   const HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=c6707fb2-9d2b-49d4-9421-fdcd4a01a5c7";
 
   const handleCopy = async (text) => {
@@ -629,7 +629,7 @@ export default function App() {
         setIsOpen={setIsDocsOpen}
       />
       <div style={{ width: '100vw', height: '100vh' }}>
-        <Spline scene="https://prod.spline.design/fUPzHI1FdmxN6-hh/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/gayyjMyRJJrXi9FQ/scene.splinecode" />
       </div>
       <button
   onClick={toggleMusic}
