@@ -527,7 +527,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-40 flex justify-center items-center p-4">
   <div className="flex gap-6">
   <a
-      href="https://x.com/ZENOProtocolAI"
+      href="https://x.com/zenoprotocol"
       onClick={playClick}
       target="_blank"
       rel="noopener noreferrer"
@@ -544,7 +544,7 @@ export default function App() {
     </a>
 
     <a
-      href="https://t.me/ZENOprotocol"
+      href="https://t.me/zenoprotocolai"
       onClick={playClick}
       target="_blank"
       rel="noopener noreferrer"
