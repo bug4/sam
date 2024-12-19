@@ -21,7 +21,7 @@ const TokenInfo = ({ onButtonClick }) => {
   const isLaunched = true; // Change to true when launching
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
 
-  const TOKEN_ADDRESS = isLaunched ? "..." : null;
+  const TOKEN_ADDRESS = isLaunched ? "ERdR8R8upD8eB8W3x64rBaycCGtjMmVfFVJTd2cepump" : null;
   const HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=c6707fb2-9d2b-49d4-9421-fdcd4a01a5c7";
 
   const handleCopy = async (text) => {
@@ -601,7 +601,7 @@ export default function App() {
 
 <div className="fixed top-4 right-4 z-40">
   <a
-    href="https://pump.fun/"
+    href="https://pump.fun/coin/ERdR8R8upD8eB8W3x64rBaycCGtjMmVfFVJTd2cepump"
     target="_blank"
     rel="noopener noreferrer"
     onClick={playClick} // Play the click sound
