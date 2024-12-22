@@ -21,7 +21,7 @@ const TokenInfo = ({ onButtonClick }) => {
   const isLaunched = true; // Change to true when launching
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
 
-  const TOKEN_ADDRESS = isLaunched ? "ERdR8R8upD8eB8W3x64rBaycCGtjMmVfFVJTd2cepump" : null;
+  const TOKEN_ADDRESS = isLaunched ? "..." : null;
   const HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=c6707fb2-9d2b-49d4-9421-fdcd4a01a5c7";
 
   const handleCopy = async (text) => {
@@ -527,7 +527,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-40 flex justify-center items-center p-4">
   <div className="flex gap-6">
   <a
-      href="https://x.com/GENISprotocol"
+      href="https://x.com/genisdotfun"
       onClick={playClick}
       target="_blank"
       rel="noopener noreferrer"
@@ -544,7 +544,7 @@ export default function App() {
     </a>
 
     <a
-      href="https://t.me/GENISprotocolai"
+      href="https://t.me/genisdotfun"
       onClick={playClick}
       target="_blank"
       rel="noopener noreferrer"
