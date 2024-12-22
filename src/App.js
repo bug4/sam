@@ -601,7 +601,7 @@ export default function App() {
 
 <div className="fixed top-4 right-4 z-40">
   <a
-    href="https://pump.fun/coin/ERdR8R8upD8eB8W3x64rBaycCGtjMmVfFVJTd2cepump"
+    href="https://pump.fun"
     target="_blank"
     rel="noopener noreferrer"
     onClick={playClick} // Play the click sound
@@ -628,7 +628,7 @@ export default function App() {
         setIsOpen={setIsDocsOpen}
       />
       <div style={{ width: '100vw', height: '100vh' }}>
-        <Spline scene="https://prod.spline.design/jMYOsptpPw6dFujM/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/MWbStLFMndlRCiMU/scene.splinecode" />
       </div>
       <button
   onClick={toggleMusic}
