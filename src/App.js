@@ -544,23 +544,6 @@ export default function App() {
     </a>
 
     <a
-      href="https://t.me/"
-      onClick={playClick}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative px-8 py-3 bg-black text-yellow-500 font-bold min-w-[140px] text-center border border-yellow-500"
-      style={{
-        clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)'
-      }}
-    >
-      <div className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-      <div className="relative flex items-center justify-center gap-2 group-hover:scale-105 transition-transform duration-300">
-        <MessageCircle className="w-5 h-5" />
-        <span>Telegram</span>
-      </div>
-    </a>
-
-    <a
       href="#!"
       onClick={(e) => {
         e.preventDefault();
