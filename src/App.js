@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
-import { Twitter, MessageCircle, FileText, ExternalLink, Terminal, Send, X, ChevronDown, Bot, Volume2, VolumeX } from 'lucide-react';
+import { Twitter, FileText, ExternalLink, Terminal, Send, X, ChevronDown, Bot, Volume2, VolumeX } from 'lucide-react';
 import AgentCreator from './components/AgentCreator';  // Make sure AgentCreator.js is in the components folder
 import OpenAI from 'openai';
 import { Connection, PublicKey } from '@solana/web3.js';
