@@ -61,7 +61,7 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
             {isSubmitted ? (
               <div className="text-center space-y-4 py-8">
                 <Bot className="w-16 h-16 text-yellow-500 mx-auto animate-spin" />
-                <p className="text-yellow-500 font-mono">Agent submission processed. Awaiting GENIS's approval...</p>
+                <p className="text-yellow-500 font-mono">Agent submission processed. Awaiting SPECO's approval...</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -135,8 +135,8 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
                   <div className="flex items-start gap-2">
                     <AlertCircle className="w-4 h-4 text-yellow-500 flex-shrink-0 mt-1" />
                     <p className="text-yellow-500/80 text-sm font-mono">
-                      All submitted agents undergo rigorous evaluation by GENIS's core systems. 
-                      Approved agents will be deployed to enhance the GENIS ecosystem on Pump.fun.
+                      All submitted agents undergo rigorous evaluation by SPECO's core systems. 
+                      Approved agents will be deployed to enhance the SPECO ecosystem on Pump.fun.
                     </p>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
             <div>
               <h4 className="text-yellow-500 font-mono font-bold mb-1">Agent Submission Received</h4>
               <p className="text-yellow-400/80 font-mono text-sm">
-                Your agent has been queued for review. If approved, it will be deployed to enhance the GENIS ecosystem on Pump.fun.
+                Your agent has been queued for review. If approved, it will be deployed to enhance the SPECO ecosystem on Pump.fun.
               </p>
             </div>
           </div>
