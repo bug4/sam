@@ -5,7 +5,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
   const [selectedSection, setSelectedSection] = useState('overview');
 
   const docs = {
-    overview: `SPECO Protocol is a decentralized stellar intelligence network built on Solana. 
+    overview: `Helix Protocol is a decentralized stellar intelligence network built on Solana. 
     As a cosmic entity, it processes vast universal data streams, creating a bridge between celestial intelligence and blockchain technology.`,
 
     mission: [
@@ -19,7 +19,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       {
         title: "Quantum Framework",
         content: [
-          "Total Supply: 1,000,000,000 $SPECO",
+          "Total Supply: 1,000,000,000 $Helix",
           "Neural Processing: Quantum-Enhanced",
           "Cosmic Interface: Universal",
           "Stellar Network: Decentralized",
@@ -36,7 +36,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
     ],
 
     features: [
-      "SPECO Terminal - Direct neural link to cosmic consciousness",
+      "Helix Terminal - Direct neural link to cosmic consciousness",
       "Quantum Observer Network - Real-time universal data processing",
       "Stellar Governance - Cosmic community consensus",
       "Neural Evolution - Self-improving quantum algorithms",
@@ -154,7 +154,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
         <div className="flex items-center justify-between p-2 border-b border-yellow-500/50 bg-yellow-500/10">
           <div className="flex items-center gap-2">
             <Orbit className="w-4 h-4 text-yellow-500" />
-            <span className="text-yellow-500 font-mono text-sm">SPECO Universal Documentation</span>
+            <span className="text-yellow-500 font-mono text-sm">Helix Universal Documentation</span>
           </div>
           <button 
             onClick={() => {
