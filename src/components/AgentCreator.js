@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { X, Bot, Send, AlertCircle } from 'lucide-react';
 
-const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
+const ByneCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
     agentName: '',
     purpose: '',
     specialization: '',
-    architecture: '',
+    bscIntegration: '',
     ethicalStance: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -30,7 +30,7 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
         agentName: '',
         purpose: '',
         specialization: '',
-        architecture: '',
+        bscIntegration: '',
         ethicalStance: ''
       });
     }, 3000);
@@ -43,15 +43,15 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
           className="absolute inset-0 bg-black/80 backdrop-blur-sm"
           onClick={() => setIsOpen(false)}
         />
-        <div className="relative w-full max-w-2xl bg-black border border-yellow-500 shadow-lg shadow-yellow-500/20 m-4">
-          <div className="flex items-center justify-between p-2 border-b border-yellow-500/50 bg-yellow-500/10">
+        <div className="relative w-full max-w-2xl bg-black border border-green-500 shadow-lg shadow-green-500/20 m-4">
+          <div className="flex items-center justify-between p-2 border-b border-green-500/50 bg-green-500/10">
             <div className="flex items-center gap-2">
-              <Bot className="w-4 h-4 text-yellow-500" />
-              <span className="text-yellow-500 font-mono text-sm">Agent Creation Interface</span>
+              <Bot className="w-4 h-4 text-green-500" />
+              <span className="text-green-500 font-mono text-sm">BYNE BSC Module Creation</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="text-yellow-500 hover:text-yellow-400"
+              className="text-green-500 hover:text-green-400"
             >
               <X className="w-4 h-4" />
             </button>
@@ -60,93 +60,93 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
           <div className="p-6">
             {isSubmitted ? (
               <div className="text-center space-y-4 py-8">
-                <Bot className="w-16 h-16 text-yellow-500 mx-auto animate-spin" />
-                <p className="text-yellow-500 font-mono">Agent submission processed. Awaiting Helix's approval...</p>
+                <Bot className="w-16 h-16 text-green-500 mx-auto animate-spin" />
+                <p className="text-green-500 font-mono">BYNE module submitted. Processing on BSC Network...</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-1">
-                  <label className="text-yellow-500 font-mono text-sm">Agent Designation</label>
+                  <label className="text-green-500 font-mono text-sm">Module Name</label>
                   <input
                     required
                     type="text"
                     value={formData.agentName}
                     onChange={(e) => setFormData({...formData, agentName: e.target.value})}
-                    className="w-full bg-black border border-yellow-500/50 p-2 text-yellow-400 font-mono focus:border-yellow-400 focus:outline-none"
-                    placeholder="Enter agent name..."
+                    className="w-full bg-black border border-green-500/50 p-2 text-green-400 font-mono focus:border-green-400 focus:outline-none"
+                    placeholder="Enter BYNE module name..."
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-yellow-500 font-mono text-sm">Primary Directive</label>
+                  <label className="text-green-500 font-mono text-sm">BSC Function</label>
                   <textarea
                     required
                     value={formData.purpose}
                     onChange={(e) => setFormData({...formData, purpose: e.target.value})}
-                    className="w-full bg-black border border-yellow-500/50 p-2 text-yellow-400 font-mono h-24 focus:border-yellow-400 focus:outline-none"
-                    placeholder="Define agent's main purpose..."
+                    className="w-full bg-black border border-green-500/50 p-2 text-green-400 font-mono h-24 focus:border-green-400 focus:outline-none"
+                    placeholder="Define module's BSC network function..."
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-yellow-500 font-mono text-sm">Specialization Protocol</label>
+                  <label className="text-green-500 font-mono text-sm">BYNE Protocol</label>
                   <select
                     required
                     value={formData.specialization}
                     onChange={(e) => setFormData({...formData, specialization: e.target.value})}
-                    className="w-full bg-black border border-yellow-500/50 p-2 text-yellow-400 font-mono focus:border-yellow-400 focus:outline-none"
+                    className="w-full bg-black border border-green-500/50 p-2 text-green-400 font-mono focus:border-green-400 focus:outline-none"
                   >
-                    <option value="">Select specialization...</option>
-                    <option value="combat">Combat Systems</option>
-                    <option value="trading">Trading Analytics</option>
-                    <option value="security">Security Protocol</option>
-                    <option value="research">Research & Development</option>
+                    <option value="">Select protocol...</option>
+                    <option value="defi">DeFi Integration</option>
+                    <option value="trading">Trading Bot</option>
+                    <option value="staking">Staking Protocol</option>
+                    <option value="governance">Governance Module</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-yellow-500 font-mono text-sm">Neural Architecture</label>
+                  <label className="text-green-500 font-mono text-sm">BSC Integration</label>
                   <select
                     required
-                    value={formData.architecture}
-                    onChange={(e) => setFormData({...formData, architecture: e.target.value})}
-                    className="w-full bg-black border border-yellow-500/50 p-2 text-yellow-400 font-mono focus:border-yellow-400 focus:outline-none"
+                    value={formData.bscIntegration}
+                    onChange={(e) => setFormData({...formData, bscIntegration: e.target.value})}
+                    className="w-full bg-black border border-green-500/50 p-2 text-green-400 font-mono focus:border-green-400 focus:outline-none"
                   >
-                    <option value="">Select architecture...</option>
-                    <option value="quantum">Quantum Processing</option>
-                    <option value="neural">Neural Network</option>
-                    <option value="hybrid">Hybrid System</option>
-                    <option value="blockchain">Blockchain-Enabled</option>
+                    <option value="">Select BSC integration...</option>
+                    <option value="pancakeswap">PancakeSwap</option>
+                    <option value="venus">Venus Protocol</option>
+                    <option value="biswap">Biswap</option>
+                    <option value="bscpad">BSCPAD</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-yellow-500 font-mono text-sm">Ethical Framework</label>
+                  <label className="text-green-500 font-mono text-sm">Security Measures</label>
                   <textarea
                     required
                     value={formData.ethicalStance}
                     onChange={(e) => setFormData({...formData, ethicalStance: e.target.value})}
-                    className="w-full bg-black border border-yellow-500/50 p-2 text-yellow-400 font-mono h-24 focus:border-yellow-400 focus:outline-none"
-                    placeholder="Define agent's ethical parameters..."
+                    className="w-full bg-black border border-green-500/50 p-2 text-green-400 font-mono h-24 focus:border-green-400 focus:outline-none"
+                    placeholder="Define module's security parameters on BSC..."
                   />
                 </div>
 
-                <div className="p-4 border border-yellow-500/30 bg-yellow-500/5">
+                <div className="p-4 border border-green-500/30 bg-green-500/5">
                   <div className="flex items-start gap-2">
-                    <AlertCircle className="w-4 h-4 text-yellow-500 flex-shrink-0 mt-1" />
-                    <p className="text-yellow-500/80 text-sm font-mono">
-                      All submitted agents undergo rigorous evaluation by Helix's core systems. 
-                      Approved agents will be deployed to enhance the Helix ecosystem on Pump.fun.
+                    <AlertCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
+                    <p className="text-green-500/80 text-sm font-mono">
+                      All submitted BYNE modules undergo security verification on the BSC Network. 
+                      Approved modules will enhance the BYNE ecosystem on Binance Smart Chain.
                     </p>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full px-8 py-3 bg-black border-2 border-yellow-500 text-yellow-500 font-mono hover:bg-yellow-500 hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
+                  className="w-full px-8 py-3 bg-black border-2 border-green-500 text-green-500 font-mono hover:bg-green-500 hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
-                  Submit Agent for Review
+                  Submit BYNE Module
                 </button>
               </form>
             )}
@@ -156,18 +156,18 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
 
       {/* Success Notification */}
       {showSuccess && (
-        <div className="fixed top-4 right-4 z-[60] w-96 bg-black border border-yellow-500 shadow-lg shadow-yellow-500/20 p-4 animate-slideIn">
+        <div className="fixed top-4 right-4 z-[60] w-96 bg-black border border-green-500 shadow-lg shadow-green-500/20 p-4 animate-slideIn">
           <div className="flex gap-3">
-            <Bot className="w-6 h-6 text-yellow-500" />
+            <Bot className="w-6 h-6 text-green-500" />
             <div>
-              <h4 className="text-yellow-500 font-mono font-bold mb-1">Agent Submission Received</h4>
-              <p className="text-yellow-400/80 font-mono text-sm">
-                Your agent has been queued for review. If approved, it will be deployed to enhance the Helix ecosystem on Pump.fun.
+              <h4 className="text-green-500 font-mono font-bold mb-1">BYNE Module Submitted</h4>
+              <p className="text-green-400/80 font-mono text-sm">
+                Your module has been queued for deployment on BSC Network. Once verified, it will be integrated into the BYNE ecosystem on Binance Smart Chain.
               </p>
             </div>
           </div>
-          <div className="mt-3 w-full bg-yellow-900/30 h-1">
-            <div className="bg-yellow-500 h-1 animate-shrink" />
+          <div className="mt-3 w-full bg-green-900/30 h-1">
+            <div className="bg-green-500 h-1 animate-shrink" />
           </div>
         </div>
       )}
@@ -175,4 +175,4 @@ const AgentCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
   );
 };
 
-export default AgentCreator;
+export default ByneCreator;
