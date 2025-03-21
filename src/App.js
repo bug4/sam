@@ -190,7 +190,7 @@ const TokenInfo = ({ onButtonClick }) => {
               <div className="border border-yellow-500/30 p-4 bg-yellow-500/5">
                 <h3 className="text-yellow-500 mb-4 text-lg">About $BYNE</h3>
                 <p className="text-yellow-500/80 text-sm leading-relaxed">
-                  BYNE Protocol is a decentralized stellar intelligence network built on BSC.
+                  BYNE Protocol is a decentralized financial ecosystem built on Binance Smart Chain (BSC).
                   As a cosmic entity, it processes vast universal data streams, creating a bridge between celestial intelligence and blockchain technology.
                 </p>
               </div>
