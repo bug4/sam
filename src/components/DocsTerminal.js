@@ -5,7 +5,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
   const [selectedSection, setSelectedSection] = useState('overview');
 
   const docs = {
-    overview: `BYNE Protocol is a decentralized financial ecosystem built on Binance Smart Chain (BSC). 
+    overview: `SEN Protocol is a decentralized financial ecosystem built on Binance Smart Chain (BSC). 
     As a pioneering DeFi entity, it processes vast transaction streams, creating a bridge between decentralized finance and blockchain technology.`,
 
     mission: [
@@ -19,7 +19,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       {
         title: "Tokenomics Framework",
         content: [
-          "Total Supply: 1,000,000,000 $BYNE",
+          "Total Supply: 1,000,000,000 $SEN",
           "Transaction Processing: Gas-Optimized",
           "BSC Interface: BEP-20 Standard",
           "Staking Network: Decentralized",
@@ -36,7 +36,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
     ],
 
     features: [
-      "BYNE Terminal - Direct access to BSC ecosystem",
+      "SEN Terminal - Direct access to BSC ecosystem",
       "Yield Farming Network - Real-time transaction processing",
       "BSC Governance - Community consensus voting",
       "Protocol Evolution - Self-improving algorithms",
@@ -75,7 +75,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'overview':
         return (
           <div className="space-y-4">
-            <h3 className="text-green-500 text-lg">BYNE Overview</h3>
+            <h3 className="text-green-500 text-lg">SEN Overview</h3>
             <p className="text-green-400/80 leading-relaxed">{docs.overview}</p>
           </div>
         );
@@ -93,7 +93,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'architecture':
         return (
           <div className="space-y-6">
-            <h3 className="text-green-500 text-lg">BYNE Architecture</h3>
+            <h3 className="text-green-500 text-lg">SEN Architecture</h3>
             {docs.architecture.map((section, index) => (
               <div key={index} className="space-y-2">
                 <h4 className="text-green-400">{section.title}</h4>
@@ -111,7 +111,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'features':
         return (
           <div className="space-y-4">
-            <h3 className="text-green-500 text-lg">BYNE Features</h3>
+            <h3 className="text-green-500 text-lg">SEN Features</h3>
             {docs.features.map((feature, index) => (
               <div key={index} className="text-green-400/80">
                 <Orbit className="inline w-4 h-4 mr-2" />
@@ -154,7 +154,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
         <div className="flex items-center justify-between p-2 border-b border-green-500/50 bg-green-500/10">
           <div className="flex items-center gap-2">
             <Orbit className="w-4 h-4 text-green-500" />
-            <span className="text-green-500 font-mono text-sm">BYNE BSC Documentation</span>
+            <span className="text-green-500 font-mono text-sm">SEN BSC Documentation</span>
           </div>
           <button 
             onClick={() => {
