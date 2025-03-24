@@ -21,7 +21,7 @@ const TokenInfo = ({ onButtonClick }) => {
   const isLaunched = true; // Change to true when launching
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
 
-  const TOKEN_ADDRESS = isLaunched ? "..." : null;
+  const TOKEN_ADDRESS = isLaunched ? "0xc8f6d4c9557ae1152bd63840611183abf5f49ddc" : null;
   const HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=b5e35f7f-4a0b-4dae-8c2c-fd9ccc402b8f";
 
   const handleCopy = async (text) => {
@@ -584,7 +584,7 @@ export default function App() {
 
 <div className="fixed top-4 right-4 z-40">
   <a
-    href="https://four.meme/"
+    href="https://four.meme/token/0xc8f6d4c9557ae1152bd63840611183abf5f49ddc"
     target="_blank"
     rel="noopener noreferrer"
     onClick={playClick} // Play the click sound
