@@ -21,7 +21,7 @@ const TokenInfo = ({ onButtonClick }) => {
   const isLaunched = true; // Change to true when launching
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
 
-  const TOKEN_ADDRESS = isLaunched ? "Bonk" : null;
+  const TOKEN_ADDRESS = isLaunched ? "9ECRhYt4s7fgRGuZ5sa9Ux4QTzfdsMikJgAEpiAfbonk" : null;
   const HELIUS_RPC = "https://mainnet.helius-rpc.com/?api-key=b5e35f7f-4a0b-4dae-8c2c-fd9ccc402b8f";
 
   const handleCopy = async (text) => {
