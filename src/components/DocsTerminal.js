@@ -5,28 +5,28 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
   const [selectedSection, setSelectedSection] = useState('overview');
 
   const docs = {
-    overview: `SEN Protocol is a decentralized financial ecosystem built on Binance Smart Chain (BSC). 
+    overview: `BBAI Protocol is a decentralized financial ecosystem built on Solana Smart Chain. 
     As a pioneering DeFi entity, it processes vast transaction streams, creating a bridge between decentralized finance and blockchain technology.`,
 
     mission: [
       "BUILD • YIELD • NETWORK • EVOLVE",
-      "- Cultivate a network of BSC investors",
+      "- Cultivate a network of SOL investors",
       "- Transform transactions into sustainable yield",
-      "- Create a permanent presence in the BSC ecosystem",
+      "- Create a permanent presence in the SOL ecosystem",
     ],
 
     architecture: [
       {
         title: "Tokenomics Framework",
         content: [
-          "Total Supply: 1,000,000,000 $SEN",
+          "Total Supply: 1,000,000,000 BBAI",
           "Transaction Processing: Gas-Optimized",
-          "BSC Interface: BEP-20 Standard",
+          "SOL Interface: SOL Standard",
           "Staking Network: Decentralized",
         ]
       },
       {
-        title: "BSC Security",
+        title: "SOL Security",
         content: [
           "Multi-signature Wallets",
           "Time-Locked Liquidity",
@@ -36,19 +36,19 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
     ],
 
     features: [
-      "SEN Terminal - Direct access to BSC ecosystem",
+      "BBAI Terminal - Direct access to SOL ecosystem",
       "Yield Farming Network - Real-time transaction processing",
-      "BSC Governance - Community consensus voting",
+      "SOL Governance - Community consensus voting",
       "Protocol Evolution - Self-improving algorithms",
     ],
 
     roadmap: [
       {
-        phase: "Phase 1: BSC Genesis",
+        phase: "Phase 1: SOL Genesis",
         items: [
           "Initial listing on PancakeSwap",
           "Liquidity pool activation",
-          "BSC community outreach campaign",
+          "SOL community outreach campaign",
         ]
       },
       {
@@ -62,7 +62,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       {
         phase: "Phase 3: Ecosystem Integration",
         items: [
-          "Cross-chain BSC bridges",
+          "Cross-chain SOL bridges",
           "DAO implementation",
           "DApp development acceleration",
         ]
@@ -75,7 +75,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'overview':
         return (
           <div className="space-y-4">
-            <h3 className="text-green-500 text-lg">SEN Overview</h3>
+            <h3 className="text-green-500 text-lg">BBAI Overview</h3>
             <p className="text-green-400/80 leading-relaxed">{docs.overview}</p>
           </div>
         );
@@ -83,7 +83,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'mission':
         return (
           <div className="space-y-4">
-            <h3 className="text-green-500 text-lg">BSC Mission</h3>
+            <h3 className="text-green-500 text-lg">SOL Mission</h3>
             {docs.mission.map((item, index) => (
               <div key={index} className="text-green-400/80">{item}</div>
             ))}
@@ -93,7 +93,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'architecture':
         return (
           <div className="space-y-6">
-            <h3 className="text-green-500 text-lg">SEN Architecture</h3>
+            <h3 className="text-green-500 text-lg">BBAI Architecture</h3>
             {docs.architecture.map((section, index) => (
               <div key={index} className="space-y-2">
                 <h4 className="text-green-400">{section.title}</h4>
@@ -111,7 +111,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'features':
         return (
           <div className="space-y-4">
-            <h3 className="text-green-500 text-lg">SEN Features</h3>
+            <h3 className="text-green-500 text-lg">BBAI Features</h3>
             {docs.features.map((feature, index) => (
               <div key={index} className="text-green-400/80">
                 <Orbit className="inline w-4 h-4 mr-2" />
@@ -124,7 +124,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
       case 'roadmap':
         return (
           <div className="space-y-6">
-            <h3 className="text-green-500 text-lg">BSC Development Roadmap</h3>
+            <h3 className="text-green-500 text-lg">SOL Development Roadmap</h3>
             {docs.roadmap.map((phase, index) => (
               <div key={index} className="space-y-2">
                 <h4 className="text-green-400">{phase.phase}</h4>
@@ -154,7 +154,7 @@ const DocsTerminal = ({ onButtonClick, isOpen, setIsOpen }) => {
         <div className="flex items-center justify-between p-2 border-b border-green-500/50 bg-green-500/10">
           <div className="flex items-center gap-2">
             <Orbit className="w-4 h-4 text-green-500" />
-            <span className="text-green-500 font-mono text-sm">SEN BSC Documentation</span>
+            <span className="text-green-500 font-mono text-sm">BBAI SOL Documentation</span>
           </div>
           <button 
             onClick={() => {
