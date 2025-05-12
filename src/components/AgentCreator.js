@@ -47,7 +47,7 @@ const SENCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
           <div className="flex items-center justify-between p-2 border-b border-green-500/50 bg-green-500/10">
             <div className="flex items-center gap-2">
               <Bot className="w-4 h-4 text-green-500" />
-              <span className="text-green-500 font-mono text-sm">BBAI Sol Module Creation</span>
+              <span className="text-green-500 font-mono text-sm">BSA Sol Module Creation</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
@@ -61,7 +61,7 @@ const SENCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
             {isSubmitted ? (
               <div className="text-center space-y-4 py-8">
                 <Bot className="w-16 h-16 text-green-500 mx-auto animate-spin" />
-                <p className="text-green-500 font-mono">BBAI module submitted. Processing on Sol Network...</p>
+                <p className="text-green-500 font-mono">BSA module submitted. Processing on Sol Network...</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -73,7 +73,7 @@ const SENCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
                     value={formData.agentName}
                     onChange={(e) => setFormData({...formData, agentName: e.target.value})}
                     className="w-full bg-black border border-green-500/50 p-2 text-green-400 font-mono focus:border-green-400 focus:outline-none"
-                    placeholder="Enter BBAI module name..."
+                    placeholder="Enter BSA module name..."
                   />
                 </div>
 
@@ -89,7 +89,7 @@ const SENCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-green-500 font-mono text-sm">BBAI Protocol</label>
+                  <label className="text-green-500 font-mono text-sm">BSA Protocol</label>
                   <select
                     required
                     value={formData.specialization}
@@ -135,8 +135,8 @@ const SENCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
                   <div className="flex items-start gap-2">
                     <AlertCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
                     <p className="text-green-500/80 text-sm font-mono">
-                      All submitted BBAI modules undergo security verification on the Sol Network. 
-                      Approved modules will enhance the BBAI ecosystem on Solana Bonk Chain.
+                      All submitted BSA modules undergo security verification on the Sol Network. 
+                      Approved modules will enhance the BSA ecosystem on Solana Bonk Chain.
                     </p>
                   </div>
                 </div>
@@ -146,7 +146,7 @@ const SENCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
                   className="w-full px-8 py-3 bg-black border-2 border-green-500 text-green-500 font-mono hover:bg-green-500 hover:text-black transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
-                  Submit BBAI Module
+                  Submit BSA Module
                 </button>
               </form>
             )}
@@ -160,9 +160,9 @@ const SENCreator = ({ onButtonClick, isOpen, setIsOpen }) => {
           <div className="flex gap-3">
             <Bot className="w-6 h-6 text-green-500" />
             <div>
-              <h4 className="text-green-500 font-mono font-bold mb-1">BBAI Module Submitted</h4>
+              <h4 className="text-green-500 font-mono font-bold mb-1">BSA Module Submitted</h4>
               <p className="text-green-400/80 font-mono text-sm">
-                Your module has been queued for deployment on Sol Network. Once verified, it will be integrated into the BBAI ecosystem on Solana Bonk Chain.
+                Your module has been queued for deployment on Sol Network. Once verified, it will be integrated into the BSA ecosystem on Solana Bonk Chain.
               </p>
             </div>
           </div>
